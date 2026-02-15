@@ -3,19 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --background: #020617;
-  --foreground: #f8fafc;
-  --accent: #3B82F6;
-  --success: #10B981;
+  --navy: #0a1628;
+  --category-blue: #7dd3fc;
+  --accent-blue: #3b82f6;
+  --accent-teal: #10b981;
+  --accent-orange: #f97316;
+  --accent-purple: #a855f7;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: #f8fafc;
+  background: var(--navy);
 }
 
-/* Click zones for navigation */
 .click-zone {
   cursor: pointer;
   user-select: none;
+}
+
+/* Category label - small caps, light blue */
+.slide-category {
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+  color: var(--category-blue);
+  font-size: 0.75rem;
+  font-weight: 600;
 }

@@ -8,16 +8,16 @@ import { SlideRenderer } from "./SlideRenderer";
 
 const slideVariants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? 120 : -120,
     opacity: 0,
+    y: direction > 0 ? 24 : -24,
   }),
   center: {
-    x: 0,
     opacity: 1,
+    y: 0,
   },
   exit: (direction: number) => ({
-    x: direction < 0 ? 120 : -120,
     opacity: 0,
+    y: direction < 0 ? 24 : -24,
   }),
 };
 
@@ -50,39 +50,33 @@ export function SlideController() {
   }, [go]);
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-[#020617]">
-      {/* Top breadcrumb */}
-      <header className="border-b border-slate-800/80 bg-slate-950/50 px-6 py-3 text-center backdrop-blur-sm">
+    <div className="relative flex min-h-screen flex-col bg-navy">
+      <header className="border-b border-slate-800/80 bg-navy/80 px-[80px] py-4 backdrop-blur-sm">
         <p className="text-sm text-slate-400">
-          Slides &gt; LinkedIn Masterclass
-          {slide && ` • ${slide.id} / ${total}`}
+          LinkedIn Masterclass
         </p>
       </header>
 
-      {/* Main area: click zones + slide */}
       <main className="relative flex flex-1 flex-col">
-        {/* Left click zone */}
         <button
           type="button"
           onClick={() => go(-1)}
-          className="click-zone absolute left-0 top-0 z-10 h-full w-16 md:w-24 flex items-center justify-center text-slate-500 hover:bg-slate-800/30 hover:text-slate-300 transition"
+          className="click-zone absolute left-0 top-0 z-10 flex h-full w-20 items-center justify-center text-slate-500 transition hover:bg-slate-800/20 hover:text-slate-300"
           aria-label="Forrige slide"
         >
           <ChevronLeft className="h-10 w-10" />
         </button>
 
-        {/* Right click zone */}
         <button
           type="button"
           onClick={() => go(1)}
-          className="click-zone absolute right-0 top-0 z-10 h-full w-16 md:w-24 flex items-center justify-center text-slate-500 hover:bg-slate-800/30 hover:text-slate-300 transition"
+          className="click-zone absolute right-0 top-0 z-10 flex h-full w-20 items-center justify-center text-slate-500 transition hover:bg-slate-800/20 hover:text-slate-300"
           aria-label="Næste slide"
         >
           <ChevronRight className="h-10 w-10" />
         </button>
 
-        {/* Slide content */}
-        <div className="flex flex-1 items-center justify-center px-16 md:px-28 py-8 overflow-hidden">
+        <div className="flex flex-1 items-center justify-center overflow-hidden px-[80px] py-[80px]">
           <AnimatePresence mode="wait" custom={direction}>
             {slide && (
               <motion.div
@@ -92,7 +86,7 @@ export function SlideController() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.25, ease: "easeInOut" }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="w-full max-w-5xl"
               >
                 <SlideRenderer slide={slide} />
@@ -102,8 +96,7 @@ export function SlideController() {
         </div>
       </main>
 
-      {/* Bottom dots */}
-      <footer className="border-t border-slate-800/80 bg-slate-950/50 px-6 py-4 backdrop-blur-sm">
+      <footer className="relative border-t border-slate-800/80 bg-navy/80 px-[80px] py-4 backdrop-blur-sm">
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <button
@@ -113,19 +106,22 @@ export function SlideController() {
                 setDirection(i > index ? 1 : -1);
                 setIndex(i);
               }}
-              className="rounded-full transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="rounded-full transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue"
               aria-label={`Gå til slide ${i + 1}`}
             >
               <span
                 className={`block rounded-full transition-all ${
                   i === index
-                    ? "h-2 w-8 bg-accent"
+                    ? "h-2 w-8 bg-accent-blue"
                     : "h-2 w-2 bg-slate-600 hover:bg-slate-500"
                 }`}
               />
             </button>
           ))}
         </div>
+        <p className="absolute bottom-4 right-[80px] text-sm text-slate-500 tabular-nums">
+          {slide ? `${slide.id} / ${total}` : ""}
+        </p>
       </footer>
     </div>
   );
