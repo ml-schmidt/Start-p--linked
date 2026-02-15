@@ -1,0 +1,112 @@
+# Project Goal
+Build a high-end, interactive presentation website (slide deck) for a workshop named "LinkedIn Masterclass".
+The target audience is Master's students in "Materiel Kultur" (Humanities/Anthropology).
+The content combines Magnus Løv Schmidt's personal growth story with strategic advice from the "Djøf LinkedIn Guide" (Rasmus Gullaksen).
+
+# Tech Stack (Mandatory)
+- Framework: Next.js 14+ (App Router).
+- Styling: Tailwind CSS.
+- Animations: Framer Motion (Crucial for smooth slide transitions).
+- Icons: Lucide React.
+- Font: Inter or Geist Sans.
+
+# Design System ("Dark SaaS" Aesthetic)
+1. Background: Deep dark slate (#020617 or #0F172A).
+2. Cards (Bento Grid Style):
+   - Background: Dark semi-transparent (bg-slate-900/60).
+   - Border: Thin borders (border-slate-800).
+   - Text: White headers, Slate-400 body text.
+   - Accents: Use Electric Blue (#3B82F6) for primary actions and Emerald Green (#10B981) for "Do this" examples.
+3. Navigation:
+   - Bottom: A centered row of dots indicating progress.
+   - Transitions: Slides should slide in from right to left smoothly.
+
+# Content Structure (10 Slides Total)
+
+## Slide 1: Intro / Title
+- Layout: Hero Centered.
+- Badge: "Djøf & SDU Inspireret"
+- Title: "LinkedIn: Fra Speciale til Karriere"
+- Subtitle: "Den komplette guide til studerende: Strategi, Profil & Hacks"
+- Speaker: Magnus Løv Schmidt (Freelance SEO Specialist).
+
+## Slide 2: Social Proof (The Hook)
+- Layout: Split Screen.
+- Left: "Er det muligt?"
+  - Bullet 1: "Okt 2024: 700 connections (Jobsøgende lønmodtager)"
+  - Bullet 2: "Feb 2026: 6.900+ følgere (Selvstændig specialist)"
+  - Bullet 3: "Resultat: Nyt job m. 40% lønstigning -> Nu fuldtidsselvstændig via inbound leads."
+- Right: Large image of Magnus (Placeholder).
+- Quote: "LinkedIn er ikke kun for folk med slips. Det er din hurtigste vej til karrieren."
+
+## Slide 3: Why LinkedIn? (The 3 Reasons)
+- Source: Djøf Guide.
+- Layout: 3 Horizontal Cards (Grid).
+  1. Card "Guldalderen": "Kun 1% poster indhold. Konkurrencen er lav. Du kan nå tusindvis af mennesker organisk."
+  2. Card "Gratis Universitet": "Få adgang til de klogeste hjerner i branchen. Det er gratis læring hver dag."
+  3. Card "Positiv Vibe": "Folk er her professionelt. Ingen trolls. Folk vil hjælpe dig."
+
+## Slide 4: Strategy Check
+- Headline: "Hvad er dit mål?"
+- Context: "Før du retter din profil, skal du vælge spor."
+- Layout: Two distinct cards (Choose your path).
+  - Path A: "Jobjægeren"
+    - Mål: Lande første voksenjob.
+    - Handling: Connect med chefer, følg virksomheder, vis faglighed.
+  - Path B: "Netværkeren"
+    - Mål: Inspiration og relationer.
+    - Handling: Kommentér, deltag i debatter, ræk ud til folk du synes er cool.
+
+## Slide 5: The Technical Setup (Profile Optimization)
+- Headline: "De 5 Profil-Elementer"
+- Layout: Bento Grid (5 boxes).
+  1. "Billedet": Professionelt, smilende, øjenkontakt. (Ingen feriebilleder).
+  2. "Banneret": Undgå den grå standard! Brug Canva. Vis hvem du er.
+  3. "Overskriften": DET VIGTIGSTE. Ikke bare din titel. Fortæl hvad du løser.
+  4. "Om-sektionen": Din historie. Hvem er du? Hvad kan du? Hvad vil du?
+  5. "Erfaring": Brug bullet points med resultater, ikke bare titler.
+
+## Slide 6: The "Materiel Kultur" Translation (Specific Context)
+- Headline: "Oversæt din faglighed"
+- Subtext: "Virksomheder forstår ikke akademiske titler. Tal business-sprog."
+- Layout: Comparison Table (Before vs. After).
+  - ❌ "Specialestuderende ved DPU" -> ✅ "Cand.pæd. studerende | Brugeradfærd & Designprocesser"
+  - ❌ "Kulturforståelse" -> ✅ "Forbrugerindsigt & UX Research"
+  - ❌ "Formidling" -> ✅ "Content Marketing & Kommunikation"
+
+## Slide 7: The Thesis Hack (Strategy for next 6 months)
+- Headline: "Brug specialet som døråbner"
+- Steps (Horizontal Arrow Process):
+  1. "Identificer": Find 5 drømmevirksomheder.
+  2. "Personer": Find nøglepersoner (ikke HR, men faglige chefer).
+  3. "Nysgerrighed": Skriv til dem pga. specialet. Ikke for at søge job.
+- Insight: "Det er meget nemmere at få et kaffemøde om 'data til speciale' end 'kan jeg få et job?'"
+
+## Slide 8: 5 Hacks to Win (Tactical)
+- Source: Djøf Guide.
+- Layout: List with Icons.
+  1. "Kommentarer er mini-opslag": Det mindst farlige sted at starte.
+  2. "Status-spillet": Få 500+ connections hurtigt (ser mere etableret ud).
+  3. "Connect opad": Forbind dig med dem, der kan ansætte dig (ikke kun medstuderende).
+  4. "Send en besked": Skriv ALTID en personlig hilsen i invitationen.
+  5. "Ryd op i feedet": Følg dem der inspirerer. Mute dem der er kedelige.
+
+## Slide 9: Copy-Paste Templates (High Value)
+- Headline: "Skabeloner du kan bruge i dag"
+- Layout: Two Code Blocks (looks like a code editor).
+  - Template 1 (Connection): "Hej [Navn], jeg connecter fordi jeg synes du har et fedt perspektiv på [Emne]. Jeg ville elske at følge med i dit feed."
+  - Template 2 (Thesis Outreach): "Hej [Navn], jeg skriver speciale om [Emne] på SDU. Jeg ser at I arbejder med [Område]. Må jeg connecte og følge jeres arbejde?"
+
+## Slide 10: Action Plan & QR
+- Headline: "Opgaven til i morgen"
+- Checklist:
+  1. Fix din Headline (Gør den værdibaseret).
+  2. Send 3 connections til folk i branchen (Brug skabelonen).
+  3. Skriv 1 kommentar på et relevant opslag.
+- CTA: "Connect med mig for flere tips"
+- Visual: Placeholder for QR Code to Magnus's profile.
+
+# Implementation Detail
+1. Create a `slides.ts` data file containing all the text content above.
+2. Create a `SlideRenderer` component that takes the slide data and renders the correct layout (TitleLayout, GridLayout, SplitLayout, etc.) based on a `type` property in the data.
+3. Ensure Framer Motion handles the enter/exit animations perfectly.
