@@ -28,6 +28,7 @@ export interface IntroSlide extends BaseSlide {
   headline: string;
   subtitle: string;
   tagline: string;
+  authorLine?: string;
   showProfileImage: boolean;
 }
 
@@ -203,10 +204,13 @@ export interface FaqSlide extends BaseSlide {
 
 export interface OutroSlide extends BaseSlide {
   type: "outro";
+  category?: string;
   headline: string;
+  mainContent?: string;
   cta: string;
   ctaUrl?: string;
   subtext?: string;
+  bottomLine?: string;
 }
 
 export type Slide =
@@ -230,11 +234,12 @@ export const slides: Slide[] = [
   {
     id: 1,
     type: "intro",
-    category: "LINKEDIN STRATEGI",
-    headline: "Magnus Løv Schmidt",
-    subtitle: "Freelance SEO Specialist",
-    tagline: "Fra Speciale til Selvstændig",
-    showProfileImage: true,
+    category: "LINKEDIN FOR STUDERENDE",
+    headline: "Kom i gang med LinkedIn",
+    subtitle: "Byg dit netværk før du har brug for det",
+    tagline: "En praktisk guide til cand.pæd studerende",
+    authorLine: "ved Magnus Løv Schmidt",
+    showProfileImage: false,
   },
   {
     id: 2,
@@ -282,10 +287,10 @@ export const slides: Slide[] = [
         accent: "teal",
       },
       {
-        icon: "🎓",
-        title: "Gratis Universitet",
+        icon: "📚",
+        title: "Lær af de bedste - gratis",
         description:
-          "Lær direkte fra de bedste i din branche. Ingen kursusgebyr. Bare konsekvent engagement.",
+          "De mennesker du beundrer i din branche? De poster om deres arbejde på LinkedIn. Du kan følge med og lære - helt gratis. Bedre end ethvert kursus.",
         accent: "orange",
       },
     ],
@@ -294,13 +299,12 @@ export const slides: Slide[] = [
     id: 5,
     type: "roadmap",
     category: "OVERSIGT",
-    headline: "Hvor starter du? De 5 byggesten",
+    headline: "Hvor starter du? De 4 byggesten",
     items: [
       { number: 1, emoji: "📸", title: "Profiloptimering" },
-      { number: 2, emoji: "📝", title: "Erfaring - Oversæt dit kandidatsprog" },
-      { number: 3, emoji: "🤝", title: "Netværk - 500+ reglen" },
-      { number: 4, emoji: "💬", title: "Beskeder - Curiosity-templaten" },
-      { number: 5, emoji: "🎯", title: "Aktivitet - Kom i gang med kommentarer" },
+      { number: 2, emoji: "🤝", title: "Netværk - 500+ reglen" },
+      { number: 3, emoji: "💬", title: "Beskeder - Curiosity-templaten" },
+      { number: 4, emoji: "🎯", title: "Aktivitet - Kom i gang med kommentarer" },
     ],
   },
   {
@@ -386,27 +390,8 @@ export const slides: Slide[] = [
   },
   {
     id: 10,
-    type: "erfaring",
-    category: "DYBT DYK #2",
-    headline: "Oversæt dit kandidatsprog til business-sprog",
-    subheadline: "Specifikt til Materiel Kultur-studerende",
-    leftColumnHeader: "Dit CV siger",
-    rightColumnHeader: "LinkedIn skal sige",
-    rows: [
-      { academic: "Kulturforståelse", business: "Forbrugerindsigt" },
-      { academic: "Formidling", business: "Indholdsmarkedsføring" },
-      { academic: "Visuel analyse", business: "Brandstrategi" },
-      { academic: "Feltarbejde", business: "Brugerundersøgelser" },
-    ],
-    tipBox:
-      "💡 Tip: Brug begge. \"Kulturforståelse (Forbrugerindsigt)\" gør dig søgbar for begge verdener.",
-    magnusExample:
-      "Mit eget eksempel: 'Linkbuilding-specialist' → 'Hjælper virksomheder med at blive fundet på Google gennem strategiske partnerships'",
-  },
-  {
-    id: 11,
     type: "connections",
-    category: "DYBT DYK #3",
+    category: "DYBT DYK #2",
     headline: "500+ Reglen",
     subheadline: "Fra 700 til 6.900+ på 16 måneder - her er præcis hvordan",
     leftStat: "500+",
@@ -423,7 +408,7 @@ export const slides: Slide[] = [
       "Hiring managers i din branche",
       "Senior-folk på LinkedIn Learning",
       "Kommentatorer på relevante opslag",
-      "Alumni der arbejder hvor du vil hen",
+      "Studiekammerater der arbejder hvor du vil hen",
     ],
     bottomTip:
       "⚠️ Godt råd: Personaliser 50% af dine invitationer. De andre kan være standard.",
@@ -444,9 +429,9 @@ export const slides: Slide[] = [
     },
   },
   {
-    id: 12,
+    id: 11,
     type: "outreach",
-    category: "DYBT DYK #4",
+    category: "DYBT DYK #3",
     headline: "Sådan connecter du naturligt",
     subheadline: "Glem templates. Vær et menneske.",
     introLine: "Når du vil connecte med nogen:",
@@ -462,9 +447,9 @@ export const slides: Slide[] = [
     tipBox: "Nøglen: Vær oprigtigt nysgerrig. Det mærkes når det er ægte.",
   },
   {
-    id: 13,
+    id: 12,
     type: "aktivitet",
-    category: "DYBT DYK #5",
+    category: "DYBT DYK #4",
     headline: "Kom i gang: Kommentarer er content",
     subheadline: "Den sikreste vej til synlighed",
     formulaText: "1 comment = 1 mini-post i dit netværks feed",
@@ -495,10 +480,10 @@ export const slides: Slide[] = [
       "✅ GØR DET NU: Åbn LinkedIn. Find 3 opslag i dit feed. Skriv én kommentar der tilføjer perspektiv (ikke bare 'Enig!'). Gentag 2-3 gange om ugen.",
   },
   {
-    id: 14,
+    id: 13,
     type: "faq",
     category: "FAQ",
-    headline: "De 4 mest stillede spørgsmål",
+    headline: "De 8 mest stillede spørgsmål",
     questions: [
       {
         question: "Skal jeg være ekspert først?",
@@ -509,7 +494,7 @@ export const slides: Slide[] = [
       {
         question: "Hvad hvis min chef/universitet ser det?",
         answer:
-          "Det er professionelt brandbuilding. Du bygger din karriere. Det er ikke Instagram.",
+          "Det er professionelt. Du bygger din karriere. Det er ikke Instagram.",
         borderColor: "teal",
       },
       {
@@ -524,15 +509,42 @@ export const slides: Slide[] = [
           "Kun hvis du faker det. Vær dig selv. Autenticitet slår perfection hver gang.",
         borderColor: "purple",
       },
+      {
+        question: "Jeg har ikke noget at poste om endnu?",
+        answer:
+          "Du behøver ikke poste. Start med at kommentere. Dine kommentarer ER indhold. Del din nysgerrighed, stil spørgsmål, tilføj perspektiv.",
+        borderColor: "blue",
+      },
+      {
+        question: "Hvad hvis ingen interagerer med mig?",
+        answer:
+          "I starten vil det være stille. Det er normalt. Bliv ved - algoritmen lærer hvem du er. Efter 2-3 uger begynder det at rulle.",
+        borderColor: "teal",
+      },
+      {
+        question: "Skal jeg connecte med folk jeg ikke kender?",
+        answer:
+          "Ja! LinkedIn er ikke Facebook. Det er okay at connecte med mennesker du finder inspirerende - selv uden at kende dem personligt.",
+        borderColor: "orange",
+      },
+      {
+        question: "Hvad hvis jeg skifter retning senere?",
+        answer:
+          "Perfekt! Din profil kan ændre sig i takt med dig. LinkedIn handler om din udvikling - ikke at have det hele på plads fra dag ét.",
+        borderColor: "purple",
+      },
     ],
   },
   {
-    id: 15,
+    id: 14,
     type: "outro",
-    headline: "Tak for i dag",
-    cta: "Connect med mig på LinkedIn for flere tips",
-    ctaUrl: "https://magnusloev.dk",
-    subtext:
-      "💡 Jeg deler åbent om min egen LinkedIn-rejse (både wins og fails) - følg med hvis du vil se hvordan det går i praksis.",
+    category: "TAK FOR I DAG",
+    headline: "Held og lykke med jeres LinkedIn-rejse",
+    mainContent:
+      "Jeg håber det her giver jer lidt at gå i gang med.\n\nHusk: Bare 5 minutter om dagen kan gøre en verden til forskel på lang sigt.\n\nMålet er ikke at lande et job i morgen - målet er at være synlig og til stede når den rigtige mulighed byder sig til på sigt.",
+    cta: "Find mig på LinkedIn",
+    ctaUrl: "https://www.linkedin.com/in/magnusloev",
+    subtext: "Vil du følge med i min egen LinkedIn-rejse? Lad os connecte 👇",
+    bottomLine: "Spørgsmål? Find mig på LinkedIn - jeg svarer altid",
   },
 ];

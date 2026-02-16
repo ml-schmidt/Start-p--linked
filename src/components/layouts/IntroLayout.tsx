@@ -40,9 +40,14 @@ export function IntroLayout({ slide }: { slide: IntroSlide }) {
       >
         {slide.subtitle}
       </motion.p>
-      <motion.p className="mt-2 text-slate-400" variants={item}>
+      <motion.p className="mt-2 text-center text-lg text-slate-400" variants={item}>
         {slide.tagline}
       </motion.p>
+      {slide.authorLine && (
+        <motion.p className="mt-6 text-sm text-slate-500" variants={item}>
+          {slide.authorLine}
+        </motion.p>
+      )}
       {slide.showProfileImage && (
         <motion.div
           className="mt-10 h-24 w-24 rounded-full border-2 border-slate-600 bg-navy-light flex items-center justify-center text-2xl font-bold text-slate-400"

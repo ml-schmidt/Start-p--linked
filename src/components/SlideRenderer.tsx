@@ -10,7 +10,6 @@ import { ProfilIntroLayout } from "@/components/layouts/ProfilIntroLayout";
 import { ProfilBilledeLayout } from "@/components/layouts/ProfilBilledeLayout";
 import { ProfilOverskriftLayout } from "@/components/layouts/ProfilOverskriftLayout";
 import { ProfilBannerLayout } from "@/components/layouts/ProfilBannerLayout";
-import { ErfaringLayout } from "@/components/layouts/ErfaringLayout";
 import { ConnectionsLayout } from "@/components/layouts/ConnectionsLayout";
 import { OutreachLayout } from "@/components/layouts/OutreachLayout";
 import { AktivitetLayout } from "@/components/layouts/AktivitetLayout";
@@ -37,8 +36,6 @@ export function SlideRenderer({ slide }: { slide: Slide }) {
       return <ProfilOverskriftLayout slide={slide} />;
     case "profilBanner":
       return <ProfilBannerLayout slide={slide} />;
-    case "erfaring":
-      return <ErfaringLayout slide={slide} />;
     case "connections":
       return <ConnectionsLayout slide={slide} />;
     case "outreach":
