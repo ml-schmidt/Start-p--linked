@@ -6,7 +6,10 @@ export type SlideType =
   | "mental"
   | "roi"
   | "roadmap"
-  | "profil"
+  | "profilIntro"
+  | "profilBillede"
+  | "profilOverskrift"
+  | "profilBanner"
   | "erfaring"
   | "connections"
   | "outreach"
@@ -72,19 +75,46 @@ export interface RoadmapSlide extends BaseSlide {
   items: RoadmapItem[];
 }
 
-export interface ProfilColumn {
-  icon: string;
-  title: string;
-  subtitle?: string;
-  bullets: string[];
-  tint: "blue" | "teal" | "orange";
-}
-
-export interface ProfilSlide extends BaseSlide {
-  type: "profil";
+export interface ProfilIntroSlide extends BaseSlide {
+  type: "profilIntro";
   category: string;
   headline: string;
-  columns: ProfilColumn[];
+  introText: string;
+  structureItems: string[];
+  exampleLabel: string;
+  exampleText: string;
+  tipBox: string;
+}
+
+export interface ProfilBilledeSlide extends BaseSlide {
+  type: "profilBillede";
+  category: string;
+  headline: string;
+  doItems: string[];
+  dontItems: string[];
+  actionBox: string;
+}
+
+export interface ProfilOverskriftSlide extends BaseSlide {
+  type: "profilOverskrift";
+  category: string;
+  headline: string;
+  introText: string;
+  badExample: string;
+  betterExample: string;
+  bestExample: string;
+  keyBullets: string[];
+  tipBox: string;
+}
+
+export interface ProfilBannerSlide extends BaseSlide {
+  type: "profilBanner";
+  category: string;
+  headline: string;
+  introText: string;
+  ideerItems: string[];
+  ressourcerItems: string[];
+  actionBox: string;
 }
 
 export interface TranslationRow {
@@ -121,8 +151,14 @@ export interface OutreachSlide extends BaseSlide {
   category: string;
   headline: string;
   subheadline: string;
-  messageLines: string[];
-  whyPoints: string[];
+  /** Legacy: LinkedIn message mock */
+  messageLines?: string[];
+  whyPoints?: string[];
+  /** Natural approach (no template) */
+  introLine?: string;
+  goodExamples?: string[];
+  avoidBullets?: string[];
+  tipBox?: string;
 }
 
 export interface AktivitetSlide extends BaseSlide {
@@ -136,6 +172,10 @@ export interface AktivitetSlide extends BaseSlide {
   rightTitle: string;
   rightBullets: string[];
   magnusQuote?: string;
+  /** "Start her i dag" actionable section */
+  actionTitle?: string;
+  actionSteps?: string[];
+  actionCta?: string;
 }
 
 export interface FaqItem {
@@ -156,6 +196,7 @@ export interface OutroSlide extends BaseSlide {
   headline: string;
   cta: string;
   ctaUrl?: string;
+  subtext?: string;
 }
 
 export type Slide =
@@ -164,7 +205,10 @@ export type Slide =
   | MentalSlide
   | RoiSlide
   | RoadmapSlide
-  | ProfilSlide
+  | ProfilIntroSlide
+  | ProfilBilledeSlide
+  | ProfilOverskriftSlide
+  | ProfilBannerSlide
   | ErfaringSlide
   | ConnectionsSlide
   | OutreachSlide
@@ -186,25 +230,26 @@ export const slides: Slide[] = [
     id: 2,
     type: "kredibilitet",
     category: "HVORFOR LYTTE TIL MIG?",
-    headline: "Min LinkedIn-rejse i tal",
+    headline: "Hvad LinkedIn har gjort for mit arbejdsliv",
     leftBullets: [
-      "Oktober 2024: 700 forbindelser, aktivt jobsøgende",
-      "Februar 2026: 6.900+ følgere, selvstændig SEO-specialist",
-      "Top 1% danske SEO-profiler på LinkedIn",
-      "40% lønstigning via strategisk netværk",
-      "Over 10 års erfaring som håndbold-dommer (struktur & fair play)",
+      "Oktober 2024: 700 forbindelser, sendte 50+ jobansøgninger",
+      "I dag: 6.900+ følgere, får jobmuligheder tilbudt direkte",
+      "Har mødt alt fra startup-gründere til museumsdirektører",
+      "Fået freelance-kunder jeg aldrig ville have mødt ellers",
+      "40% højere indtægt end mit sidste fastansættelse",
     ],
-    rightBefore: "700 connections",
-    rightAfter: "6.900+ followers",
+    rightBefore: "Søger job",
+    rightAfter: "Job finder mig",
   },
   {
     id: 3,
     type: "mental",
-    category: "UDFORDRINGEN",
-    headline: "Hvorfor føles det svært?",
-    quoteText: "Janteloven og frygten for at poste",
+    category: "JEG VED GODT AT...",
+    headline: "Det føles mærkeligt at 'poste om sig selv'",
+    quoteText:
+      "Janteloven sidder dybt i os danskere.\n\"Hvem tror du, du er?\"\nMen her er sandheden: Dit netværk kan ikke hjælpe dig, hvis de ikke ved du eksisterer.",
     subText:
-      "Det føles grænseoverskridende - og det er helt okay. Men det koster dig muligheder.",
+      "Det handler ikke om at prale. Det handler om at være synlig når muligheden dukker op.",
   },
   {
     id: 4,
@@ -221,7 +266,7 @@ export const slides: Slide[] = [
       },
       {
         icon: "💧",
-        title: "Netværk før behov",
+        title: "Byg relationer før du har brug for dem",
         description:
           "Byg brønden før du er tørstig. Dit næste job findes i dit netværk - men kun hvis du har et.",
         accent: "teal",
@@ -241,55 +286,94 @@ export const slides: Slide[] = [
     category: "OVERSIGT",
     headline: "Hvor starter du? De 5 byggesten",
     items: [
-      { number: 1, emoji: "📸", title: "Profiloptimering - The Holy Trinity" },
+      { number: 1, emoji: "📸", title: "Profiloptimering" },
       { number: 2, emoji: "📝", title: "Erfaring - Oversæt dit kandidatsprog" },
       { number: 3, emoji: "🤝", title: "Netværk - 500+ reglen" },
       { number: 4, emoji: "💬", title: "Beskeder - Curiosity-templaten" },
-      { number: 5, emoji: "🎯", title: "Aktivitet - Kommentarer som content" },
+      { number: 5, emoji: "🎯", title: "Aktivitet - Kom i gang med kommentarer" },
     ],
   },
   {
     id: 6,
-    type: "profil",
-    category: "DYBT DYK #1",
-    headline: "Profiloptimering: The Holy Trinity",
-    columns: [
-      {
-        icon: "😊",
-        title: "Profilbillede",
-        subtitle: "Smil til kameraet",
-        bullets: [
-          "Professionel men approachable",
-          "Hovedet fylder 60% af rammen",
-        ],
-        tint: "blue",
-      },
-      {
-        icon: "🎨",
-        title: "Banner",
-        subtitle: "Vis din faglighed",
-        bullets: [
-          "Ikke bare logo",
-          "Kommuniker din værdi visuelt",
-          "Brug Canva-template",
-        ],
-        tint: "teal",
-      },
-      {
-        icon: "✍️",
-        title: "Headline",
-        subtitle: "Værdi, ikke kun titel",
-        bullets: [
-          "Inkluder søgeord: \"Consumer Insights\", \"SEO\"",
-          "Fortæl HVAD du løser, ikke kun HVEM du er",
-          "Eksempel: \"Freelance SEO Specialist | Hjælper ecommerce med at få flere organiske kunder | 10+ års erfaring | Test-først metodik\"",
-        ],
-        tint: "orange",
-      },
+    type: "profilIntro",
+    category: "PROFIL DEL 1",
+    headline: "Din intro: Fortæl hvad du faktisk laver",
+    introText: "Dit intro-felt er det første folk læser. Gør det simpelt:",
+    structureItems: [
+      "Hvad du studerer/arbejder med",
+      "Hvad du interesserer dig for",
+      "Hvordan folk kan bruge dig (praktik, projekter, samtaler)",
     ],
+    exampleLabel: "EKSEMPEL (for en cand.pæd studerende):",
+    exampleText:
+      "\"Jeg studerer pædagogik med fokus på kulturformidling. Brænder for at gøre kunst og kultur tilgængeligt for børn. Søger praktikpladser, projekter og gode samtaler om formidling.\"",
+    tipBox: "💡 Skriv som du taler. Ikke som dit CV.",
   },
   {
     id: 7,
+    type: "profilBillede",
+    category: "PROFIL DEL 2",
+    headline: "Dit profilbillede: Smil til kameraet",
+    doItems: [
+      "Smil - du virker approachable",
+      "Professionel men afslappet",
+      "Dit ansigt fylder 60% af billedet",
+      "God belysning (tag det udenfor)",
+      "Neutral baggrund",
+    ],
+    dontItems: [
+      "Gruppebillede (hvem er du?)",
+      "Solbriller eller hat",
+      "Beskåret festbillede",
+      "For langt væk fra kamera",
+      "Pixeleret eller mørkt",
+    ],
+    actionBox:
+      "🎯 Gør det i dag: Tag telefonen ud. Stil dig ved et vindue. Tag 10 billeder. Vælg det hvor du smiler mest naturligt.",
+  },
+  {
+    id: 8,
+    type: "profilOverskrift",
+    category: "PROFIL DEL 3",
+    headline: "Din overskrift: Værdi, ikke kun titel",
+    introText:
+      "Din overskrift er det der vises ved siden af dit navn OVERALT på LinkedIn. Brug den smart.",
+    badExample: "❌ DÅRLIGT: \"Studerende ved KU\"",
+    betterExample:
+      "✅ BEDRE: \"Cand.pæd studerende | Interesseret i kulturformidling og museumsarbejde\"",
+    bestExample:
+      "✅✅ ENDNU BEDRE: \"Cand.pæd studerende | Hjælper museer med at formidle kunst til børn | Søger praktik inden for formidling\"",
+    keyBullets: [
+      "Hvad du studerer (så det er klart)",
+      "Hvad du interesserer dig for (så de rigtige folk finder dig)",
+      "Hvad du søger (så folk ved hvordan de kan hjælpe)",
+    ],
+    tipBox:
+      "💡 Inkluder søgeord: 'kulturformidling', 'pædagogik', 'museumsarbejde' - det gør dig søgbar",
+  },
+  {
+    id: 9,
+    type: "profilBanner",
+    category: "PROFIL DEL 4",
+    headline: "Dit banner: Vis dit felt visuelt",
+    introText:
+      "Dit banner er det store billede øverst på din profil. De fleste lader det stå tomt. Det er spildt plads.",
+    ideerItems: [
+      "Billede fra et museum du har besøgt",
+      "Børn der lærer/leger (hvis du har rettigheder)",
+      "Grafik med dit fokusområde (brug Canva)",
+      "Citat der repræsenterer din tilgang",
+    ],
+    ressourcerItems: [
+      "Canva.com → \"LinkedIn Banner\" templates (gratis)",
+      "Unsplash.com → gratis billeder",
+      "15 minutters investering",
+    ],
+    actionBox:
+      "🎯 Lav et i aften. Det behøver ikke være perfekt. Det skal bare ikke være tomt.",
+  },
+  {
+    id: 10,
     type: "erfaring",
     category: "DYBT DYK #2",
     headline: "Oversæt dit kandidatsprog til business-sprog",
@@ -297,18 +381,18 @@ export const slides: Slide[] = [
     leftColumnHeader: "Dit CV siger",
     rightColumnHeader: "LinkedIn skal sige",
     rows: [
-      { academic: "Kulturforståelse", business: "Consumer Insights" },
-      { academic: "Formidling", business: "Content Marketing" },
-      { academic: "Visuel analyse", business: "Brand Strategy" },
-      { academic: "Feltarbejde", business: "User Research" },
+      { academic: "Kulturforståelse", business: "Forbrugerindsigt" },
+      { academic: "Formidling", business: "Indholdsmarkedsføring" },
+      { academic: "Visuel analyse", business: "Brandstrategi" },
+      { academic: "Feltarbejde", business: "Brugerundersøgelser" },
     ],
     tipBox:
-      "💡 Pro tip: Brug begge. \"Kulturforståelse (Consumer Insights)\" gør dig søgbar for begge verdener.",
+      "💡 Tip: Brug begge. \"Kulturforståelse (Forbrugerindsigt)\" gør dig søgbar for begge verdener.",
     magnusExample:
       "Mit eget eksempel: 'Linkbuilding-specialist' → 'Hjælper virksomheder med at blive fundet på Google gennem strategiske partnerships'",
   },
   {
-    id: 8,
+    id: 11,
     type: "connections",
     category: "DYBT DYK #3",
     headline: "500+ Reglen",
@@ -330,33 +414,28 @@ export const slides: Slide[] = [
       "Alumni der arbejder hvor du vil hen",
     ],
     bottomTip:
-      "⚠️ Pro tip: Personaliser 50% af dine invitationer. De andre kan være standard.",
+      "⚠️ Godt råd: Personaliser 50% af dine invitationer. De andre kan være standard.",
   },
   {
-    id: 9,
+    id: 12,
     type: "outreach",
     category: "DYBT DYK #4",
-    headline: "Besked-templaten der virker",
-    subheadline: "The Thesis Hack - brug dit speciale som åbner",
-    messageLines: [
-      "Hej [Navn],",
-      "",
-      "Jeg skriver speciale om [Emne] og kunne se I arbejder med [Område] hos [Virksomhed].",
-      "",
-      "Må jeg connecte og følge med i jeres arbejde? Ville være spændende at lære af jeres tilgang.",
-      "",
-      "Mvh,",
-      "[Dit navn]",
+    headline: "Sådan connecter du naturligt",
+    subheadline: "Glem templates. Vær et menneske.",
+    introLine: "Når du vil connecte med nogen:",
+    goodExamples: [
+      "\"Hej [Navn], jeg så dit opslag om [emne] - det gjorde mig nysgerrig på [ting]. Må jeg følge med i dit arbejde?\"",
+      "\"Jeg ser I arbejder med [område] hos [sted] - det virker vanvittigt spændende. Ville gerne lære mere!\"",
     ],
-    whyPoints: [
-      "Ærlig intention",
-      "Specifik reference til deres arbejde",
-      "Ingen direkte \"ask\"",
-      "Lav-threshold (bare følge med)",
+    avoidBullets: [
+      "Generic copy-paste beskeder",
+      "\"Lad os netværke\" (cringe)",
+      "At bede om noget i første besked",
     ],
+    tipBox: "Nøglen: Vær oprigtigt nysgerrig. Det mærkes når det er ægte.",
   },
   {
-    id: 10,
+    id: 13,
     type: "aktivitet",
     category: "DYBT DYK #5",
     headline: "Kom i gang: Kommentarer er content",
@@ -378,9 +457,16 @@ export const slides: Slide[] = [
     ],
     magnusQuote:
       "Jeg brugte 3 måneder på kun at kommentere. Ingen opslag. Nul. Det virkede bedre end jeg troede.",
+    actionTitle: "Start her i dag:",
+    actionSteps: [
+      "Find 3 opslag i dit feed fra folk du finder interessante",
+      "Skriv en kommentar der tilføjer noget (ikke bare \"Enig!\")",
+      "Gentag 2-3 gange om ugen",
+    ],
+    actionCta: "Det tager 10 minutter. Det er din investering.",
   },
   {
-    id: 11,
+    id: 14,
     type: "faq",
     category: "FAQ",
     headline: "De 4 mest stillede spørgsmål",
@@ -388,7 +474,7 @@ export const slides: Slide[] = [
       {
         question: "Skal jeg være ekspert først?",
         answer:
-          "Nej. Del hvad du lærer. Begynderperspektivet er værdifuldt. Folk husker deres egen rejse.",
+          "Nej. Del bare hvad du lærer undervejs. Andre studerende og nyuddannede kan faktisk relatere bedre til din rejse end til en 'ekspert'.",
         borderColor: "blue",
       },
       {
@@ -400,7 +486,7 @@ export const slides: Slide[] = [
       {
         question: "Hvor tit skal jeg poste?",
         answer:
-          "Start med 2-3 kommentarer om ugen. Konsistens >> volumen. Kvalitet >> kvantitet.",
+          "Start med 2-3 kommentarer om ugen. Det tager 10 minutter. Gør det til en vane.",
         borderColor: "orange",
       },
       {
@@ -412,10 +498,12 @@ export const slides: Slide[] = [
     ],
   },
   {
-    id: 12,
+    id: 15,
     type: "outro",
     headline: "Tak for i dag",
     cta: "Connect med mig på LinkedIn for flere tips",
     ctaUrl: "https://magnusloev.dk",
+    subtext:
+      "💡 Jeg deler åbent om min egen LinkedIn-rejse (både wins og fails) - følg med hvis du vil se hvordan det går i praksis.",
   },
 ];

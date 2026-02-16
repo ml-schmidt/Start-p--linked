@@ -18,7 +18,7 @@ export function MentalLayout({ slide }: { slide: MentalSlide }) {
       </h2>
       <div className="relative mt-12 max-w-2xl">
         <div className="absolute -inset-4 rounded-2xl bg-accent-blue/5 blur-xl" />
-        <p className="relative text-2xl font-semibold text-white md:text-3xl leading-relaxed">
+        <p className="relative text-2xl font-semibold text-white md:text-3xl leading-relaxed whitespace-pre-line">
           {slide.quoteText}
         </p>
         <p className="relative mt-6 text-slate-400">{slide.subText}</p>

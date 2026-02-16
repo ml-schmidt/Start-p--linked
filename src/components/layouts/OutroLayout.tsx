@@ -14,6 +14,9 @@ export function OutroLayout({ slide }: { slide: OutroSlide }) {
       <h2 className="text-4xl font-bold text-white md:text-5xl">
         {slide.headline}
       </h2>
+      {slide.subtext && (
+        <p className="mt-6 max-w-md text-slate-300">{slide.subtext}</p>
+      )}
       <a
         href={slide.ctaUrl ?? "#"}
         target={slide.ctaUrl ? "_blank" : undefined}

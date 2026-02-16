@@ -6,7 +6,10 @@ import { KredibilitetLayout } from "@/components/layouts/KredibilitetLayout";
 import { MentalLayout } from "@/components/layouts/MentalLayout";
 import { RoiLayout } from "@/components/layouts/RoiLayout";
 import { RoadmapLayout } from "@/components/layouts/RoadmapLayout";
-import { ProfilLayout } from "@/components/layouts/ProfilLayout";
+import { ProfilIntroLayout } from "@/components/layouts/ProfilIntroLayout";
+import { ProfilBilledeLayout } from "@/components/layouts/ProfilBilledeLayout";
+import { ProfilOverskriftLayout } from "@/components/layouts/ProfilOverskriftLayout";
+import { ProfilBannerLayout } from "@/components/layouts/ProfilBannerLayout";
 import { ErfaringLayout } from "@/components/layouts/ErfaringLayout";
 import { ConnectionsLayout } from "@/components/layouts/ConnectionsLayout";
 import { OutreachLayout } from "@/components/layouts/OutreachLayout";
@@ -26,8 +29,14 @@ export function SlideRenderer({ slide }: { slide: Slide }) {
       return <RoiLayout slide={slide} />;
     case "roadmap":
       return <RoadmapLayout slide={slide} />;
-    case "profil":
-      return <ProfilLayout slide={slide} />;
+    case "profilIntro":
+      return <ProfilIntroLayout slide={slide} />;
+    case "profilBillede":
+      return <ProfilBilledeLayout slide={slide} />;
+    case "profilOverskrift":
+      return <ProfilOverskriftLayout slide={slide} />;
+    case "profilBanner":
+      return <ProfilBannerLayout slide={slide} />;
     case "erfaring":
       return <ErfaringLayout slide={slide} />;
     case "connections":

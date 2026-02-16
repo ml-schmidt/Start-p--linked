@@ -27,24 +27,42 @@ export function AktivitetLayout({ slide }: { slide: AktivitetSlide }) {
           &ldquo;{slide.magnusQuote}&rdquo;
         </div>
       )}
-      <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2">
-        <div>
-          <h3 className="text-lg font-bold text-white">{slide.leftTitle}</h3>
-          <ul className="mt-4 space-y-2 text-slate-300">
-            {slide.leftBullets.map((b, i) => (
-              <li key={i}>• {b}</li>
+      {slide.actionSteps != null && slide.actionSteps.length > 0 ? (
+        <div className="mt-12 rounded-xl border border-accent-teal/40 bg-accent-teal/5 p-6">
+          <h3 className="text-lg font-bold text-white">
+            {slide.actionTitle ?? "Start her i dag:"}
+          </h3>
+          <ol className="mt-4 list-decimal list-inside space-y-2 text-slate-200">
+            {slide.actionSteps.map((step, i) => (
+              <li key={i}>{step}</li>
             ))}
-          </ul>
+          </ol>
+          {slide.actionCta && (
+            <p className="mt-6 font-medium text-accent-teal">
+              {slide.actionCta}
+            </p>
+          )}
         </div>
-        <div>
-          <h3 className="text-lg font-bold text-white">{slide.rightTitle}</h3>
-          <ul className="mt-4 space-y-2 text-slate-300">
-            {slide.rightBullets.map((b, i) => (
-              <li key={i}>• {b}</li>
-            ))}
-          </ul>
+      ) : (
+        <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2">
+          <div>
+            <h3 className="text-lg font-bold text-white">{slide.leftTitle}</h3>
+            <ul className="mt-4 space-y-2 text-slate-300">
+              {slide.leftBullets.map((b, i) => (
+                <li key={i}>• {b}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-white">{slide.rightTitle}</h3>
+            <ul className="mt-4 space-y-2 text-slate-300">
+              {slide.rightBullets.map((b, i) => (
+                <li key={i}>• {b}</li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
     </motion.div>
   );
 }
