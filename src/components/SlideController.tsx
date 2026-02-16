@@ -50,14 +50,12 @@ export function SlideController() {
   }, [go]);
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-navy">
-      <header className="border-b border-slate-800/80 bg-navy/80 px-[80px] py-4 backdrop-blur-sm">
-        <p className="text-sm text-slate-400">
-          LinkedIn Masterclass
-        </p>
+    <div className="relative flex h-screen flex-col overflow-hidden bg-navy">
+      <header className="sticky top-0 z-10 shrink-0 border-b border-slate-800/80 bg-navy px-[80px] py-4 backdrop-blur-sm">
+        <p className="text-sm text-slate-400">LinkedIn Masterclass</p>
       </header>
 
-      <main className="relative flex flex-1 flex-col">
+      <main className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
         <button
           type="button"
           onClick={() => go(-1)}
@@ -76,28 +74,33 @@ export function SlideController() {
           <ChevronRight className="h-10 w-10" />
         </button>
 
-        <div className="flex flex-1 items-center justify-center overflow-hidden px-[80px] py-[80px]">
-          <AnimatePresence mode="wait" custom={direction}>
-            {slide && (
-              <motion.div
-                key={slide.id}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="w-full max-w-5xl"
-              >
-                <SlideRenderer slide={slide} />
-              </motion.div>
-            )}
-          </AnimatePresence>
+        <div className="min-h-0 flex-1 overflow-y-auto px-[80px] py-[80px]">
+          <div className="mx-auto flex min-h-full max-w-5xl items-center justify-center">
+            <AnimatePresence mode="wait" custom={direction}>
+              {slide && (
+                <motion.div
+                  key={slide.id}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="w-full py-4"
+                >
+                  <SlideRenderer slide={slide} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </main>
 
-      <footer className="relative border-t border-slate-800/80 bg-navy/80 px-[80px] py-4 backdrop-blur-sm">
-        <div className="flex items-center justify-center gap-2">
+      <footer
+        className="sticky bottom-0 z-10 shrink-0 border-t border-slate-800/80 bg-navy px-[80px] py-4 backdrop-blur-sm"
+        style={{ bottom: 0 }}
+      >
+        <div className="relative flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -119,7 +122,10 @@ export function SlideController() {
             </button>
           ))}
         </div>
-        <p className="absolute bottom-4 right-[80px] text-sm text-slate-500 tabular-nums">
+        <p
+          className="absolute right-[80px] z-10 text-sm text-slate-500 tabular-nums"
+          style={{ bottom: 20 }}
+        >
           {slide ? `${slide.id} / ${total}` : ""}
         </p>
       </footer>

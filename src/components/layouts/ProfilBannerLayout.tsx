@@ -31,7 +31,7 @@ export function ProfilBannerLayout({ slide }: { slide: ProfilBannerSlide }) {
           <li key={i}>• {item}</li>
         ))}
       </ul>
-      <div className="mt-8 rounded-lg border border-accent-orange/50 bg-accent-orange/10 px-4 py-3 text-slate-200">
+      <div className="mt-8 rounded-xl border-2 border-accent-teal bg-accent-teal/15 px-5 py-4 text-slate-100 font-medium">
         {slide.actionBox}
       </div>
     </motion.div>

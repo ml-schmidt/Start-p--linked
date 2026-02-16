@@ -44,6 +44,26 @@ export function ConnectionsLayout({ slide }: { slide: ConnectionsSlide }) {
       <div className="mt-8 rounded-lg border border-accent-orange/50 bg-accent-orange/10 px-4 py-3 text-sm text-slate-200">
         {slide.bottomTip}
       </div>
+      {slide.goerDetNuExercise && (
+        <div className="mt-8 rounded-xl border-2 border-amber-400/80 bg-amber-500/15 px-5 py-5 text-slate-100">
+          <p className="mb-4 font-bold text-amber-200">
+            {slide.goerDetNuExercise.title}
+          </p>
+          <ol className="list-decimal list-inside space-y-2 text-slate-200">
+            {slide.goerDetNuExercise.steps.map((step, i) => (
+              <li key={i}>{step}</li>
+            ))}
+          </ol>
+          <p className="mt-4 font-semibold text-amber-200">
+            {slide.goerDetNuExercise.frequency}
+          </p>
+          {slide.goerDetNuExercise.messageExample && (
+            <p className="mt-3 text-sm text-slate-300 italic">
+              {slide.goerDetNuExercise.messageExample}
+            </p>
+          )}
+        </div>
+      )}
     </motion.div>
   );
 }

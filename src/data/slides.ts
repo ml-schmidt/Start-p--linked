@@ -105,6 +105,7 @@ export interface ProfilOverskriftSlide extends BaseSlide {
   bestExample: string;
   keyBullets: string[];
   tipBox: string;
+  actionBox?: string;
 }
 
 export interface ProfilBannerSlide extends BaseSlide {
@@ -134,6 +135,13 @@ export interface ErfaringSlide extends BaseSlide {
   magnusExample?: string;
 }
 
+export interface GoerDetNuExercise {
+  title: string;
+  steps: string[];
+  frequency: string;
+  messageExample?: string;
+}
+
 export interface ConnectionsSlide extends BaseSlide {
   type: "connections";
   category: string;
@@ -144,6 +152,7 @@ export interface ConnectionsSlide extends BaseSlide {
   rightTitle: string;
   rightBullets: string[];
   bottomTip: string;
+  goerDetNuExercise?: GoerDetNuExercise;
 }
 
 export interface OutreachSlide extends BaseSlide {
@@ -176,6 +185,7 @@ export interface AktivitetSlide extends BaseSlide {
   actionTitle?: string;
   actionSteps?: string[];
   actionCta?: string;
+  goerDetNu?: string;
 }
 
 export interface FaqItem {
@@ -329,7 +339,7 @@ export const slides: Slide[] = [
       "Pixeleret eller mørkt",
     ],
     actionBox:
-      "🎯 Gør det i dag: Tag telefonen ud. Stil dig ved et vindue. Tag 10 billeder. Vælg det hvor du smiler mest naturligt.",
+      "✅ GØR DET NU: Stil dig ved et vindue. Tag 10 selfies. Upload den bedste. (Det tager 5 minutter)",
   },
   {
     id: 8,
@@ -350,6 +360,8 @@ export const slides: Slide[] = [
     ],
     tipBox:
       "💡 Inkluder søgeord: 'kulturformidling', 'pædagogik', 'museumsarbejde' - det gør dig søgbar",
+    actionBox:
+      "✅ GØR DET NU: Åbn LinkedIn på din telefon. Klik 'Rediger profil'. Opdater din overskrift. Gem.",
   },
   {
     id: 9,
@@ -370,7 +382,7 @@ export const slides: Slide[] = [
       "15 minutters investering",
     ],
     actionBox:
-      "🎯 Lav et i aften. Det behøver ikke være perfekt. Det skal bare ikke være tomt.",
+      "✅ GØR DET NU: Gå til Canva.com. Søg 'LinkedIn Banner'. Vælg en template. Tilpas den. Download. Upload.",
   },
   {
     id: 10,
@@ -415,6 +427,21 @@ export const slides: Slide[] = [
     ],
     bottomTip:
       "⚠️ Godt råd: Personaliser 50% af dine invitationer. De andre kan være standard.",
+    goerDetNuExercise: {
+      title: "✅ GØR DET NU - NETVÆRKSØVELSEN (10 minutter):",
+      steps: [
+        "Åbn LinkedIn på din telefon",
+        "Søg efter en stilling du gerne vil have (fx 'Museumspædagog' eller 'Kulturformidler')",
+        "Klik på en jobtitel",
+        "Scroll ned til 'Ansatte hos [virksomhed]'",
+        "Find personer der har titler 1-2 steps over dit niveau",
+        "Send connection request (med eller uden besked)",
+        "Gentag 10 gange",
+      ],
+      frequency: "GØR DETTE ÉN GANG OM UGEN.",
+      messageExample:
+        "Tilføj evt. en kort besked: 'Hej [Navn], jeg ser du arbejder med [område] - det virker super spændende. Må jeg følge med?'",
+    },
   },
   {
     id: 12,
@@ -464,6 +491,8 @@ export const slides: Slide[] = [
       "Gentag 2-3 gange om ugen",
     ],
     actionCta: "Det tager 10 minutter. Det er din investering.",
+    goerDetNu:
+      "✅ GØR DET NU: Åbn LinkedIn. Find 3 opslag i dit feed. Skriv én kommentar der tilføjer perspektiv (ikke bare 'Enig!'). Gentag 2-3 gange om ugen.",
   },
   {
     id: 14,

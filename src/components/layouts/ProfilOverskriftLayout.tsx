@@ -37,6 +37,11 @@ export function ProfilOverskriftLayout({
       <div className="mt-8 rounded-lg border border-accent-blue/50 bg-accent-blue/10 px-4 py-3 text-slate-200">
         {slide.tipBox}
       </div>
+      {slide.actionBox && (
+        <div className="mt-6 rounded-xl border-2 border-accent-teal bg-accent-teal/15 px-5 py-4 text-slate-100 font-medium">
+          {slide.actionBox}
+        </div>
+      )}
     </motion.div>
   );
 }

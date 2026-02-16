@@ -63,6 +63,11 @@ export function AktivitetLayout({ slide }: { slide: AktivitetSlide }) {
           </div>
         </div>
       )}
+      {slide.goerDetNu && (
+        <div className="mt-8 rounded-xl border-2 border-accent-teal bg-accent-teal/15 px-5 py-4 text-slate-100 font-medium">
+          {slide.goerDetNu}
+        </div>
+      )}
     </motion.div>
   );
 }
